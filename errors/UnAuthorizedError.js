@@ -6,5 +6,3 @@ class UnAuthorizedError extends Error {
 }
 
 module.exports = UnAuthorizedError;
-
-// return next(new UnAuthorizedError(err.message));// 401

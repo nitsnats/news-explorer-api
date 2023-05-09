@@ -6,5 +6,3 @@ class BadRequestError extends Error {
 }
 
 module.exports = BadRequestError;
-
-// return next(new BadRequestError('Data format is incorrect'));// 400

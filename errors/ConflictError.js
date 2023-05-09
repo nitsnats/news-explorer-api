@@ -6,5 +6,3 @@ class ConflictError extends Error {
 }
 
 module.exports = ConflictError;
-
-// return next(new ConflictError('Email already exists'));// 409

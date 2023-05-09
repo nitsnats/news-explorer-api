@@ -1,14 +1,9 @@
-// const path = require('path');
 const express = require('express');
 require('dotenv').config({ path: '../.env' });
 const cors = require('cors');
 const { errors } = require('celebrate');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-// const { createUser, login } = require('./controllers/users');
-// const auth = require('./middlewares/auth');
-// const { validateUser } = require('./middlewares/validators');
-// const { validateLogin } = require('./middlewares/validators');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
@@ -35,32 +30,6 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-// app.get('/alive',(req,res)=>{
-//   res.send('im alive')
-// })
-
-// app.post('/signup', validateLogin, createUser);
-// app.post('/signin', validateLogin, login);
-
-// app.use(express.static(path.resolve(__dirname, '../frontend/build')))
-
-// app.use(auth);
-
-// const userRouter = require('./routes/users');
-// const articleRouter = require('./routes/articles');
-
-// app.use('/articles', require('./routes/articles'));
-
-// app.use((req, res, next) => {
-//   req.user = {
-//     // _id: '5d8b8592978f8bd833ca8133'
-//     _id: '6320767512b05924a6b6f90c',
-//   };
-//   next();
-// });
-
-// app.use(userRouter);
-// app.use(articleRouter);
 app.use(router);
 
 app.use(limiter);
@@ -68,14 +37,6 @@ app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
-
-// app.use('/', (req, res) => {
-//   res.status(404).send({ message: 'Requested resource was not found' });
-// });
-// app.use('/', router);
-
-// app.use(errors());
-// app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

@@ -6,5 +6,3 @@ class InternalServerError extends Error {
 }
 
 module.exports = InternalServerError;
-
-// return next(new InternalServerError(err.message));// 500

@@ -8,6 +8,7 @@ const InternalServerError = require('../errors/InternalServerError');
 const NotFoundError = require('../errors/NotFoundError');
 const UnAuthorizedError = require('../errors/UnAuthorizedError');
 const ConflictError = require('../errors/ConflictError');
+const user = require('../models/user');
 
 const {
   ER_MES_OK,

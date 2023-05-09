@@ -1,6 +1,6 @@
 // const path = require('path');
 const express = require('express');
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const cors = require('cors');
 const { errors } = require('celebrate');
 const mongoose = require('mongoose');
@@ -13,6 +13,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const { DB_ADDRESS } = require('./constants/config');
+const router = require('./routes');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -60,6 +61,7 @@ app.get('/crash-test', () => {
 
 // app.use(userRouter);
 // app.use(articleRouter);
+app.use(router);
 
 app.use(limiter);
 app.use(errorLogger);

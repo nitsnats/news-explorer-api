@@ -83,7 +83,7 @@ const validateArticle = celebrate({
         'string.uri': 'Valid image required',
         'string.required': 'Link is required',
     }),
-    image: Joi.string().required().custom(validateUrl).messages({
+    image: Joi.string().required().custom(validateURL).messages({
         'string.required': 'Image is required',
         'string.uri': 'Valid image required',
     }),

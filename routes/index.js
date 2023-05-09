@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const auth = require('../middleware/auth');
+const auth = require('../middlewares/auth');
 
-const { createUser, login } = require('./controllers/users');
-const { validateLogin } = require('./middlewares/validators');
+const { createUser, login } = require('../controllers/users');
+const { validateLogin } = require('../middlewares/validators');
 
 const userRouter = require('./users');
 const articleRouter = require('./articles');

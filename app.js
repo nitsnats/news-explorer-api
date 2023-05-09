@@ -30,9 +30,10 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(limiter);
+
 app.use(router);
 
-app.use(limiter);
 app.use(errorLogger);
 
 app.use(errors());

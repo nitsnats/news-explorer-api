@@ -45,7 +45,7 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
-  const userId = req.user.id;
+  const userId = req.user._id;
   getUserById(userId, res, req);
 };
 
@@ -57,7 +57,8 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ id: user._id }, secret, {
         expiresIn: '7d',
       });
-      res.send({ data: user.toJSON(), token });
+
+      res.send({ token });
     })
     .catch(() => {
       next(new UnAuthorizedError('Login information is incorrect, check either email or password')); // 401

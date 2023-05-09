@@ -3,18 +3,18 @@ const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
 
 const { createUser, login } = require('../controllers/users');
-const { validateLogin } = require('../middlewares/validators');
+const { validateLogin, validateUser } = require('../middlewares/validators');
 
 const userRouter = require('./users');
 const articleRouter = require('./articles');
 
-router.post('/signup', validateLogin, createUser);
+router.post('/signup', validateUser, createUser);
 router.post('/signin', validateLogin, login);
 
 router.use(auth);
 
-router.use('/users', userRouter);
-router.use('/articles', articleRouter);
+router.use('/', userRouter);
+router.use('/', articleRouter);
 
 router.use('*', (req, res, next) => {
   next(new NotFoundError('Requested resource not found'));

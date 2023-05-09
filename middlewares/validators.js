@@ -60,36 +60,34 @@ const validateProfile = celebrate({
   }),
 });
 
-
 // Article validation
 const validateArticle = celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required().messages({
-        'string.required': 'Keyword is required',
-      }),
+      'string.required': 'Keyword is required',
+    }),
     title: Joi.string().required().messages({
-        'string.required': 'Title is required',
+      'string.required': 'Title is required',
     }),
     text: Joi.string().required().messages({
-        'string.required': 'Text is required',
+      'string.required': 'Text is required',
     }),
     date: Joi.string().required().messages({
-        'string.required': 'Date is required',
+      'string.required': 'Date is required',
     }),
     source: Joi.string().required().messages({
-        'string.required': 'Source is required',
+      'string.required': 'Source is required',
     }),
     link: Joi.string().required().pattern(LINK_REGEXP).messages({
-        'string.uri': 'Valid image required',
-        'string.required': 'Link is required',
+      'string.uri': 'Valid image required',
+      'string.required': 'Link is required',
     }),
     image: Joi.string().required().custom(validateURL).messages({
-        'string.required': 'Image is required',
-        'string.uri': 'Valid image required',
+      'string.required': 'Image is required',
+      'string.uri': 'Valid image required',
     }),
   }),
 });
-
 
 // Id article validation
 const validateId = celebrate({
@@ -124,4 +122,3 @@ module.exports = {
   validateLogin, // app.post('/signin', validateLogin, login);
   validateProfile,
 };
-

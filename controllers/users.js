@@ -8,7 +8,6 @@ const InternalServerError = require('../errors/InternalServerError');
 const NotFoundError = require('../errors/NotFoundError');
 const UnAuthorizedError = require('../errors/UnAuthorizedError');
 const ConflictError = require('../errors/ConflictError');
-const user = require('../models/user');
 
 const {
   ER_MES_OK,
@@ -72,13 +71,9 @@ module.exports.login = (req, res, next) => {
       // const token = jwt.sign({ id: user._id },
       //   NODE_ENV === 'production' ? JWT_SECRET : 'development-secret', {
       const secret = NODE_ENV === 'production' ? JWT_SECRET : 'development-secret';
-      const token = jwt.sign(
-        { id: user._id },
-        secret,
-        {
-          expiresIn: '7d',
-        }
-      );
+      const token = jwt.sign({ id: user._id }, secret, {
+        expiresIn: '7d',
+      });
       res.send({ data: user.toJSON(), token });
     })
     .catch(() => {
@@ -129,7 +124,6 @@ module.exports.createUser = (req, res, next) => {
       return next(new InternalServerError('An error occured'));// 500
     });
 };
-
 
 // module.exports.updateUser = (req, res) => {
 
@@ -188,7 +182,6 @@ module.exports.createUser = (req, res, next) => {
 //     });
 // };
 
-
 // module.exports.updateUser = (req, res, next) => {
 //   const { name, about } = req.body;
 
@@ -201,7 +194,6 @@ module.exports.createUser = (req, res, next) => {
 // };
 
 // module.exports = mongoose.model('user', userSchema);
-
 
 // # returns information about the logged-in user (email and name)
 // GET /users/me

@@ -47,9 +47,11 @@ module.exports.deleteArticle = (req, res, next) => {
     });
 };
 
-// POST  creates an article with the passed keyword, title, text, date, source, link, and image in the body
+// POST  creates an article with keyword, title, text, date, source, link, and image in the body
 module.exports.createArticle = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image} = req.body;
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
 
   const owner = req.user.id;
 

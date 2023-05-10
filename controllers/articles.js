@@ -25,7 +25,7 @@ module.exports.deleteArticle = (req, res, next) => {
       if (!article.owner.equals(req.user._id)) {
         throw new ForbiddenError('The request is forbidden');
       }
-      return article.deleteOne
+      return article.deleteOne()
         .then(() => res.status(ER_MES_OK).send({ message: 'Article has been deleted', article })); // 200
     })
     .catch((err) => {
@@ -35,7 +35,7 @@ module.exports.deleteArticle = (req, res, next) => {
       if (err.status === 404) {
         return next(new NotFoundError(err.message));// 404
       }
-      return next(new InternalServerError(err.message));// 500
+      return next(err);
     });
 };
 

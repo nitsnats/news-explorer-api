@@ -36,33 +36,21 @@ const validateLogin = celebrate({
 // User validation
 const validateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30)
-      .messages({
-        'string.min': MIN_STR_MESSAGE,
-        'string.max': MAX_STR_MESSAGE,
-      }),
-    password: Joi.string().required().min(8)
-      .messages({
-        'string.min': MIN_STR_MESSAGE,
-        'string.empty': EMPTY_STR_MESSAGE,
-      }),
     email: Joi.string().required().email()
-      .message(VALID_EMAIL_MESSAGE)
-      .messages({
-        'string.empty': EMPTY_STR_MESSAGE,
-      }),
-  }),
-});
-
-// Profile validation
-const validateProfile = celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.min': MIN_STR_MESSAGE,
-        'string.max': MAX_STR_MESSAGE,
-        'string.empty': EMPTY_STR_MESSAGE,
-      }),
+    .message(VALID_EMAIL_MESSAGE)
+    .messages({
+      'string.empty': EMPTY_STR_MESSAGE,
+    }),
+    password: Joi.string().required().min(8)
+    .messages({
+      'string.min': MIN_STR_MESSAGE,
+      'string.empty': EMPTY_STR_MESSAGE,
+    }),
+    name: Joi.string().min(2).max(30)
+    .messages({
+      'string.min': MIN_STR_MESSAGE,
+      'string.max': MAX_STR_MESSAGE,
+    }),
   }),
 });
 
@@ -126,5 +114,4 @@ module.exports = {
   validateArticle, // router.post('/articles', validateArticle, createArticle);
   validateUser, // app.post('/signup', validateUser, createUser);
   validateLogin, // app.post('/signin', validateLogin, login);
-  validateProfile,
 };

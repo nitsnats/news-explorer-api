@@ -20,7 +20,7 @@ module.exports.getArticles = (req, res, next) => {
 
 // DELETE deletes the stored article by _id
 module.exports.deleteArticle = (req, res, next) => {
-  const { articleId } = req.params;
+  const { articleId } = req.params.articleId;
   Article.findById(articleId)
     .orFail(() => next(new NotFoundError('Article not found'))) // 404
     .then((article) => {

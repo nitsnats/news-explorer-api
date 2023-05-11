@@ -68,9 +68,9 @@ module.exports.login = (req, res, next) => {
 // POST
 module.exports.createUser = (req, res, next) => {
   const {
-    name,
     email,
     password,
+    name,
   } = req.body;
   User.findOne({ email })
     .then((user) => {

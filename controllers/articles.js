@@ -7,7 +7,9 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const {
   ER_MES_OK,
   ER_MES_CREATED,
-} = require('../constants/error');
+  INVALID_DATA_MESSAGE,
+  FORBIDDEN_MESSAGE,
+} = require('../utils/constants');
 
 // GET returns all articles saved by the user
 module.exports.getArticles = (req, res, next) => {
@@ -23,7 +25,7 @@ module.exports.deleteArticle = (req, res, next) => {
     .orFail(() => next(new NotFoundError('Article not found'))) // 404
     .then((article) => {
       if (!article.owner.equals(req.user._id)) {
-        throw new ForbiddenError('The request is forbidden');
+        throw new ForbiddenError(FORBIDDEN_MESSAGE);
       }
       return article.deleteOne()
         .then(() => res.status(ER_MES_OK).send({ message: 'Article has been deleted', article })); // 200
@@ -60,7 +62,7 @@ module.exports.createArticle = (req, res, next) => {
     .then((article) => res.status(ER_MES_CREATED).send(article)) // 201
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequestError('Data format is incorrect'));// 400
+        return next(new BadRequestError(INVALID_DATA_MESSAGE));// 400
       }
       return next(new InternalServerError(err.message));// 500
     });

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { LINK_REGEXP } = require('../constants/regex');
+const { LINK_REGEXP } = require('../utils/constants');
 
 const articleSchema = new mongoose.Schema(
   {

@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
-const { DB_ADDRESS } = require('./constants/config');
+const { DB_ADDRESS } = require('./utils/constants');
 const router = require('./routes');
 
 const app = express();

@@ -12,7 +12,7 @@ const ConflictError = require('../errors/ConflictError');
 const {
   ER_MES_OK,
   ER_MES_CREATED,
-} = require('../constants/error');
+} = require('../utils/constants');
 
 // GET
 module.exports.getUsers = (req, res, next) => {

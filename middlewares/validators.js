@@ -2,7 +2,13 @@ const { Joi, celebrate } = require('celebrate');
 const { ObjectId } = require('mongoose').Types;
 const validator = require('validator');
 
-const { LINK_REGEXP } = require('../constants/regex');
+const {
+  MIN_STR_MESSAGE,
+  MAX_STR_MESSAGE,
+  EMPTY_STR_MESSAGE,
+  VALID_EMAIL_MESSAGE,
+  LINK_REGEXP,
+} = require('../utils/constants');
 
 const validateURL = (value, helpers) => {
   if (validator.isURL(value)) {
@@ -15,14 +21,14 @@ const validateURL = (value, helpers) => {
 const validateLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email()
-      .message('The "email" field must be a valid email')
+      .message(VALID_EMAIL_MESSAGE)
       .messages({
-        'string.empty': 'The "email" field must be filled in',
+        'string.empty': EMPTY_STR_MESSAGE,
       }),
     password: Joi.string().required().min(8)
       .messages({
-        'string.min': 'The minimum length of the "about" field is 8',
-        'string.empty': 'The "password" field must be filled in',
+        'string.min': MIN_STR_MESSAGE,
+        'string.empty': EMPTY_STR_MESSAGE,
       }),
   }),
 });
@@ -32,18 +38,18 @@ const validateUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30)
       .messages({
-        'string.min': 'The minimum length of the "name" field is 2',
-        'string.max': 'The maximum length of the "name" field is 30',
+        'string.min': MIN_STR_MESSAGE,
+        'string.max': MAX_STR_MESSAGE,
       }),
     password: Joi.string().required().min(8)
       .messages({
-        'string.min': 'The minimum length of the "about" field is 8',
-        'string.empty': 'The "password" field must be filled in',
+        'string.min': MIN_STR_MESSAGE,
+        'string.empty': EMPTY_STR_MESSAGE,
       }),
     email: Joi.string().required().email()
-      .message('The "email" field must be a valid email')
+      .message(VALID_EMAIL_MESSAGE)
       .messages({
-        'string.empty': 'The "email" field must be filled in',
+        'string.empty': EMPTY_STR_MESSAGE,
       }),
   }),
 });
@@ -53,9 +59,9 @@ const validateProfile = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30)
       .messages({
-        'string.min': 'The minimum length of the "name" field is 2',
-        'string.max': 'The maximum length of the "name" field is 30',
-        'string.empty': 'The "name" field must be filled in',
+        'string.min': MIN_STR_MESSAGE,
+        'string.max': MAX_STR_MESSAGE,
+        'string.empty': EMPTY_STR_MESSAGE,
       }),
   }),
 });

@@ -37,20 +37,20 @@ const validateLogin = celebrate({
 const validateUser = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email()
-    .message(VALID_EMAIL_MESSAGE)
-    .messages({
-      'string.empty': EMPTY_STR_MESSAGE,
-    }),
+      .message(VALID_EMAIL_MESSAGE)
+      .messages({
+        'string.empty': EMPTY_STR_MESSAGE,
+      }),
     password: Joi.string().required().min(8)
-    .messages({
-      'string.min': MIN_STR_MESSAGE,
-      'string.empty': EMPTY_STR_MESSAGE,
-    }),
+      .messages({
+        'string.min': MIN_STR_MESSAGE,
+        'string.empty': EMPTY_STR_MESSAGE,
+      }),
     name: Joi.string().min(2).max(30)
-    .messages({
-      'string.min': MIN_STR_MESSAGE,
-      'string.max': MAX_STR_MESSAGE,
-    }),
+      .messages({
+        'string.min': MIN_STR_MESSAGE,
+        'string.max': MAX_STR_MESSAGE,
+      }),
   }),
 });
 

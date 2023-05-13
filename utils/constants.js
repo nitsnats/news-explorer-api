@@ -10,7 +10,7 @@ const { DB_ADDRESS = 'mongodb://127.0.0.1:27017/newsdb' } = process.env;
 
 // STATUS CODE
 const ER_MES_OK = 200;
-const ER_MES_CREATED = 202;
+const ER_MES_CREATED = 201;
 const ER_MES_BAD_REQUEST = 400;
 const ER_MES_UNSUTHORIZED_ERROR = 401;
 const ER_MES_NOT_FOUND = 404;

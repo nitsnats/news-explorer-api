@@ -72,6 +72,7 @@ module.exports.createUser = (req, res, next) => {
     password,
     name,
   } = req.body;
+  console.log("1")
   User.findOne({ email })
     .then((user) => {
       if (user) {
@@ -80,13 +81,14 @@ module.exports.createUser = (req, res, next) => {
       return bcrypt.hash(password, 10);
     })
     .then((hash) => User.create({
-      name,
       email,
       password: hash,
+      name
     }))
-    .then((user) => res.status(ER_MES_CREATED).send({
-      data: user,
-    })) // 201  //data:users
+    .then((user) => {
+      const newUser = { name:user.name, email:user.email }
+      res.status(ER_MES_CREATED).send(newUser);
+      }) // 201
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError(`${Object.values(err.errors).map((error) => error.message)

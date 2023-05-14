@@ -13,8 +13,8 @@ router.post('/signin', validateLogin, login);
 
 router.use(auth);
 
-router.use('/users', userRouter);
-router.use('/articles', articleRouter);
+router.use('/', userRouter);
+router.use('/', articleRouter);
 
 router.use('*', (req, res, next) => {
   next(new NotFoundError('Requested resource not found'));

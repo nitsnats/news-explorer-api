@@ -40,15 +40,18 @@ const getUserById = (userId, res, req, next) => {
 
 // GET
 module.exports.getUser = (req, res, next) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
+  // const { userId } = req.params;
   getUserById(userId, res, req);
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
+  console.log("2")
   getUserById(userId, res, req);
 };
 
+// POST signin
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
@@ -65,7 +68,7 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-// POST
+// POST signup
 module.exports.createUser = (req, res, next) => {
   const {
     email,

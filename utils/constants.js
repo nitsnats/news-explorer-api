@@ -7,7 +7,7 @@ const PASS_REGEXP = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 const { JWT_SECRET = 'JWT_SECRET' } = process.env;
 // const { DB_ADDRESS = 'mongodb://127.0.0.1:27017/newsdb' } = process.env;
 // const { DB_ADDRESS = 'mongodb://localhost:27017/newsdb' } = process.env;
-const DB_ADDRESS = 'mongodb:///127.0.0.1:27017/newsdb';
+const DB_ADDRESS = 'mongodb://localhost:27017/newsdb';
 
 // STATUS CODE
 const ER_MES_OK = 200;

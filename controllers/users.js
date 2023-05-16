@@ -68,64 +68,64 @@ module.exports.login = (req, res, next) => {
 };
 
 // POST signup
-// module.exports.createUser = (req, res, next) => {
-//   const {
-//     email,
-//     password,
-//     name,
-//   } = req.body;
-//   console.log("1")
-//   User.findOne({ email })
-//     .then((user) => {
-//       if (user) {
-//         return next(new ConflictError('Email already exists'));// 409
-//       }
-//       return bcrypt.hash(password, 10);
-//     })
-//     .then((hash) => User.create({
-//       email,
-//       password: hash,
-//       name
-//     }))
-//     .then((user) => {
-//       const newUser = { name:user.name, email:user.email }
-//       res.status(ER_MES_CREATED).send(newUser);
-//       }) // 201
-//     .catch((err) => {
-//       if (err.name === 'ValidationError') {
-//         return next(new BadRequestError(`${Object.values(err.errors).map((error) =>
-//           error.message)
-//           .join(', ')}`));
-//       }
-//       return next(new InternalServerError('An error occured'));// 500
-//     });
-// };
-
-module.exports.createUser = async (req, res, next) => {
-  const { email, password, name } = req.body;
-
-  try {
-    const isUserExcist = await User.findOne({ email });
-    if (isUserExcist) {
-      next(new ConflictError('Email already exists')); // 409
-      return;
-    }
-    const hashPass = await bcrypt.hash(password, 10);
-    if (hashPass) {
-      const newUser = await User.create({ name, email, password: hashPass });
-      if (newUser) {
-        res.status(201).send({ name, email });
-      } else {
-        throw new Error();
+module.exports.createUser = (req, res, next) => {
+  const {
+    email,
+    password,
+    name,
+  } = req.body;
+  console.log("1")
+  User.findOne({ email })
+    .then((user) => {
+      if (user) {
+        return next(new ConflictError('Email already exists'));// 409
       }
-    } else {
-      throw new Error();
-    }
-  } catch (e) {
-    if (e.name === 'ValidationError') {
-      next(new InternalServerError('An error occured')); // 500
-      return;
-    }
-    next(e);
-  }
+      return bcrypt.hash(password, 10);
+    })
+    .then((hash) => User.create({
+      email,
+      password: hash,
+      name
+    }))
+    .then((user) => {
+      const newUser = { name:user.name, email:user.email }
+      res.status(ER_MES_CREATED).send(newUser);
+      }) // 201
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        return next(new BadRequestError(`${Object.values(err.errors).map((error) =>
+          error.message)
+          .join(', ')}`));
+      }
+      return next(new InternalServerError('An error occured'));// 500
+    });
 };
+
+// module.exports.createUser = async (req, res, next) => {
+//   const { email, password, name } = req.body;
+
+//   try {
+//     const isUserExcist = await User.findOne({ email });
+//     if (isUserExcist) {
+//       next(new ConflictError('Email already exists')); // 409
+//       return;
+//     }
+//     const hashPass = await bcrypt.hash(password, 10);
+//     if (hashPass) {
+//       const newUser = await User.create({ name, email, password: hashPass });
+//       if (newUser) {
+//         res.status(201).send({ name, email });
+//       } else {
+//         throw new Error();
+//       }
+//     } else {
+//       throw new Error();
+//     }
+//   } catch (e) {
+//     if (e.name === 'ValidationError') {
+//       next(new InternalServerError('An error occured')); // 500
+//       return;
+//     }
+//     next(e);
+//   }
+// };

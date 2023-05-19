@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
-// const { LINK_REGEXP } = require('../constants/regex');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -10,9 +9,6 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (v) => isEmail(v),
-      // validator(v) {
-      //   return MAIL_REGEXP.test(v);
-      // },
       message: 'Wrong email format',
     },
   },
@@ -28,24 +24,6 @@ const userSchema = new mongoose.Schema({
     minlength: [2, 'The minimum length of name is 2'],
     maxlength: [30, 'The maximum length of name is 30'],
   },
-  // about: {
-  //   type: String,
-  //   default: 'Explorer',
-  //   required: [true, 'The "About" field must be filled in'],
-  //   minlength: [2, 'The minimum length of about is 2'],
-  //   maxlength: [30, 'The maximum length of about is 30'],
-  // },
-  // avatar: {
-  //   type: String,
-  //   default: 'https://pictures.s3.yandex.net/resources/avatar_1604080799.jpg',
-  //   required: [true, 'The "Avatar" field must be filled in'],
-  //   validate: {
-  //     validator(v) {
-  //       return LINK_REGEXP.test(v);
-  //     },
-  //     message: 'Sorry. the link is not valid!',
-  //   },
-  // },
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
@@ -65,7 +43,6 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(email,
 };
 
 userSchema.methods.toJSON = function () {
-  // eslint-disable-next-line no-unused-vars
   const { password, ...obj } = this.toObject();
   return obj;
 };

@@ -9,7 +9,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const { DB_ADDRESS } = require('./utils/constants');
 const router = require('./routes');
-// const { MONGO_DB = 'mongodb://localhost:27017/newsdb' } = require('./utils/config');
+const { MONGO_DB = 'mongodb://localhost:27017/newsdb' } = require('./utils/config');
 
 const app = express();
 const { PORT = 3000 } = process.env;

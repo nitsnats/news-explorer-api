@@ -1,19 +1,10 @@
 # Product subject:
 
-## news-explorer-api  backend
+## news-explorer-frontend
+
 
 # project description:
-  the backend part of my final project
- 
-# Project structure:
- * app.js.
- * controllers.
- * errors.
- * middlewares.
- * models.
- * routes.
- * utils.
- * Third party libraries: cors, limiter, helmet, jwt, celebrate, and joi.
+  the frontend part of my final project
 
 
 # Technologies and techniques:
@@ -40,10 +31,9 @@
 
 
 # Project Link:
-  # https://github.com/nitsnats/news-explorer-api.git
+  # https://github.com/nitsnats/news-explorer-frontend.git
 
-  # https://api.news.nitsnats.mooo.com
-
+  
 # Contact:
 
 Nitsa Saban email:nitsnats@hotmail.com
